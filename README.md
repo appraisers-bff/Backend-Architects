@@ -2,6 +2,12 @@
 
 A Backend for Worther App
 
+### Local Use
+
+- run `yarn` in order to install all dependencies
+- use the command `yarn server` to run nodemon live server
+
+
 ## Endpoints
 
 ### Users Overview
