@@ -1,6 +1,5 @@
 require('dotenv').config();
-const knex = require('knex');
-const knexConfig = require('../../knexfile');
+
 const jwt = require('jsonwebtoken');
 
 const db = require('../../data/dbConfig');
@@ -35,7 +34,7 @@ function generateToken(user) {
   } 
 
   function find() {
-    return db('users').select('id', 'username', 'password');
+    return db('users').select('id', 'username', 'email', 'password');
   }
 
   function findBy(filter) {
