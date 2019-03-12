@@ -14,7 +14,7 @@ router.post('/users/:id/house', restricted, async (req, res) => {
         const user = await Users.findById(req.params.id);
         if (user.length>0) {
             try {
-                const newHouse = { user_id: reg.params.id, ...req.body}
+                const newHouse = { user_id: req.params.id, ...req.body}
                 const response = await Houses.createHouse(newHouse);
                 res.status(201).json(response)
             } catch (err) {
