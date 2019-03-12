@@ -9,7 +9,9 @@ module.exports = {
     add,
     find,
     findById,
-    findBy
+    findBy,
+    remove,
+    updateUser
 }
 
 async function add(user) {
@@ -46,4 +48,17 @@ function generateToken(user) {
     return db('users')
       .where({ id })
       .first();
+  }
+
+  function remove(id) {
+    return db('users')
+    .where({id})
+    .del()
+  }
+
+  function updateUser(id, changes) {
+    return db('users')
+      .where({ id })
+      .first()
+      .update(changes);
   }

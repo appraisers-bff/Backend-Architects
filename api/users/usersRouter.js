@@ -56,5 +56,31 @@ router.post('/login', (req, res) => {
       .catch(err => res.send(err));
   });
 
+  router.delete('/:id', async (req, res) => {
+    try {
+      const count = await Users.remove(req.params.id);
+      if (count > 0) {
+        res.status(200).json({ message: 'User has been removed' });
+      } else {
+        res.status(404).json({ message: 'User could not be found' });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: 'Error removing the user',
+      });
+    }
+  });
+
+  router.put('/users/:id/', auth, async (req, res) => {
+    try {
+        let response = await Users.updateUser(req.params.id, req.body);
+        res.status(200).json(response);
+    } catch (err) {
+        res.status(404).json({
+            error: `Could not find specified user.`
+        });
+    }
+});
 
 module.exports = router;
