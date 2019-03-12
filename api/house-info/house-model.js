@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-const jwt = require('jsonwebtoken');
-
 const db = require('../../data/dbConfig');
 
 module.exports = {
@@ -29,14 +27,14 @@ async function add(house) {
       .where({ 'user_id': id })
       .select('id','address','city',
       'state', 'zip', 'bed', 'bath', 'sqft', 'stories',
-      'gargage', 'pool')
+      'garage', 'pool')
   }
 
 
   function find() {
     return db('houses').select('id','address','city',
      'state', 'zip', 'bed', 'bath', 'sqft', 'stories',
-     'gargage', 'pool');
+     'garage', 'pool');
   }
 
   function findBy(filter) {

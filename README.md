@@ -54,3 +54,30 @@ A Backend for Worther App
     tbl.integer("stories").notNullable();
     tbl.integer("garage").notNullable();
     tbl.boolean("pool").notNullable();
+
+### To Test in Postman 
+
+Login
+
+```
+{ 
+"username": "ryan1",
+"password": "ryan" }
+
+```
+House Info
+
+```
+{
+    "address": "3332 W Main St",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90210",
+    "bed": "5",
+    "bath": "4",
+    "sqft": "5400",
+    "stories": "2",
+    "garage": "4",
+    "pool": "true" }
+
+```
