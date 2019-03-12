@@ -6,6 +6,7 @@ A Backend for Worther App
 
 - run `yarn` in order to install all dependencies
 - use the command `yarn server` to run nodemon live server
+- use http://localhost:6000/ to get end points
 
 
 ## Endpoints
