@@ -14,18 +14,22 @@ const router = express.Router();
 router.post('/house', (req, res) => {
     const house = req.body
     Houses.add(house)
-    .then(house => {
-        res.status(201).json(house)
+    .then(id=> {
+        console.log(id)
+        Houses.findById(id)
+        res.status(201).json(id)
     })
     .catch(err => {
         res.status(500).json({error: "could not save house at this time"} )
     })
 })
 
-router.get('/houses', (req, res) => {
-    Houses.find()
-      .then(houses => {
-        res.json(houses);
+router.get('/house/:id', (req, res) => {
+    let { id } = req.body 
+    
+      .then(house => {
+        Houses.findById(id)
+        res.status(201).json(house);
       })
       .catch(error => {
         res.status(500).json(error);
@@ -53,7 +57,7 @@ router.post('/user/:id/house', restricted, async (req, res) => {
          res.status(500).json ({ error: 'Could not access users'})
      }
  } else {
-     console.log(reg.body)
+     console.log(req.body)
      res.status(403).json ({ error: 'Please include required house info'})
  }
     }) 
