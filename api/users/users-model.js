@@ -34,7 +34,7 @@ function generateToken(user) {
   } 
 
   function find() {
-    return db('users').select('id', 'username', 'email', 'password');
+    return db('users').select('id', 'first', 'last', 'username', 'email', 'password');
   }
 
   function findBy(filter) {
