@@ -8,11 +8,10 @@ const Users = require('../users/users-model')
 
 const router = express.Router();
 
-router.get('/house', (req, res) => {
-    res.send('Worther Api house test');
-  });
 
-router.post('/house', (req,res) => {
+  
+
+router.post('/house', (req, res) => {
     const house = req.body
     Houses.add(house)
     .then(house => {
@@ -23,7 +22,17 @@ router.post('/house', (req,res) => {
     })
 })
 
-router.post('/user/:id/house', async (req, res) => { 
+router.get('/houses', (req, res) => {
+    Houses.find()
+      .then(houses => {
+        res.json(houses);
+      })
+      .catch(error => {
+        res.status(500).json(error);
+      });
+  });
+
+router.post('/user/:id/house', restricted, async (req, res) => { 
 
  if (req.body.length > 0) {
      try {
