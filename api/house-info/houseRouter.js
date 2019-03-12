@@ -26,8 +26,9 @@ router.post('/house', (req, res) => {
 
 router.get('/house/:id', (req, res) => {
     let { id } = req.body 
-    Houses.findById(id)
+    
       .then(house => {
+        Houses.findById(id)
         res.status(201).json(house);
       })
       .catch(error => {
@@ -56,7 +57,7 @@ router.post('/user/:id/house', restricted, async (req, res) => {
          res.status(500).json ({ error: 'Could not access users'})
      }
  } else {
-     console.log(reg.body)
+     console.log(req.body)
      res.status(403).json ({ error: 'Please include required house info'})
  }
     }) 
