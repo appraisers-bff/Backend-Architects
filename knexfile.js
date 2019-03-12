@@ -19,15 +19,23 @@ module.exports = {
   },
 
   production: {
-    client: 'pg',
-    connection: dbConnection,
+    client: 'sqlite3',
+    useNullAsDefault: true,
+    connection: {
+      filename: './data/auth.db3'
+    },
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run('PRAGMA foreign_keys = ON', done);
+      },
+    },
     migrations: {
-      tableName: 'knex_migrations',
       directory: './data/migrations',
     },
-    useNullAsDefault: true,
-    ssl: true
-   
-  }
+    seeds: {
+      directory: './data/seeds',
+    },
+
+  },
 
 };

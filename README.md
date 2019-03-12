@@ -24,9 +24,14 @@ A Backend for Worther App
 
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
-|  POST  | `/users/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .                                   |
-|  PUT | `/users/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
-|  GET   | `/users/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.          
+|  POST  | `/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .   
+
+|  GET   | `/houses`     | No login necessary | house info | Shows homes.   
+
+|  POST  | `/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .                                   |
+|  PUT | `/user/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
+|  GET   | `/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.    
+|  DELETE   | `/user/:id/house`     | Must be logged in JWT in Authorization Header| Delete house info | Deletes home for logged in user.          
 
 ### Example JSON object:
 ```
@@ -53,3 +58,30 @@ A Backend for Worther App
     tbl.integer("stories").notNullable();
     tbl.integer("garage").notNullable();
     tbl.boolean("pool").notNullable();
+
+### To Test in Postman 
+
+Login
+
+```
+{ 
+"username": "ryan1",
+"password": "ryan" }
+
+```
+House Info
+
+```
+{
+    "address": "3332 W Main St",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90210",
+    "bed": "5",
+    "bath": "4",
+    "sqft": "5400",
+    "stories": "2",
+    "garage": "4",
+    "pool": "true" }
+
+```

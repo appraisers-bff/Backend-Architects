@@ -14,7 +14,10 @@ exports.up = function(knex, Promise) {
     tbl
       .integer("user_id")
       .unsigned()
-      .references("users.id");
+      .references("id")
+      .inTable('users')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
   });
 };
 
