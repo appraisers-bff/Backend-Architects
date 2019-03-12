@@ -8,7 +8,7 @@ const Users = require('../users/users-model')
 
 const router = express.Router();
 
-router.post('/users/:id/house', restricted, async (req, res) => { 
+router.post('/user/:id/house', restricted, async (req, res) => { 
  if (req.body.length > 0) {
      try {
         const user = await Users.findById(req.params.id);
