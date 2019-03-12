@@ -56,7 +56,7 @@ router.post('/login', (req, res) => {
       .catch(err => res.send(err));
   });
 
-  router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
       const count = await Users.remove(req.params.id);
       if (count > 0) {
@@ -72,10 +72,10 @@ router.post('/login', (req, res) => {
     }
   });
 
-  router.put('/users/:id/', auth, async (req, res) => {
+router.put('/users/:id/', auth, async (req, res) => {
     try {
         let response = await Users.updateUser(req.params.id, req.body);
-        res.status(200).json(response);
+        res.status(200).json({ message: 'User info has been successfully updated' });
     } catch (err) {
         res.status(404).json({
             error: `Could not find specified user.`
