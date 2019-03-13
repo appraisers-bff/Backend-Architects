@@ -25,7 +25,7 @@ A Backend for Worther App
 
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
-|  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house . |
+|  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`, `user_id` | Used for adding a new house . |
 |  GET   | `api/house/:id`     | No login necessary | house info | Shows home. |
 |  PUT   | `api/house/:id`     | No login necessary | house info | Updates home. | 
 |  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |                                  |
