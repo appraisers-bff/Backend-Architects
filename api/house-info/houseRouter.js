@@ -47,7 +47,7 @@ router.get('/house/:id', (req, res) => {
     }
   });
 
-router.put('/house/:id/', async (req, res) => {
+router.put('/house/:id', async (req, res) => {
     try {
         let response = await Houses.updateHouse(req.params.id, req.body);
         res.status(200).json({ message: 'House info has been successfully updated' });
@@ -61,7 +61,7 @@ router.put('/house/:id/', async (req, res) => {
 
 router.post('/user/:id/house', restricted, async (req, res) => { 
 
- if (req.body.length > 0) {
+ if (req.body) {
      try {
         const user = await Users.findById(req.params.id);
         if (user.length>0) {
@@ -85,7 +85,23 @@ router.post('/user/:id/house', restricted, async (req, res) => {
  }
     }) 
 
-// router.get('/user/:id/house', restricted, async (req, res))
+router.get('/user/:id/house', async (req, res) => {
+    try {
+        const response = await Houses.getHouseById(req.params.id);
+
+        if (response) {
+                res.status(200).json(response);
+            } else {
+                res.status(403).json({
+                    error: 'You are not allowed to see this house'
+                });
+            }
+    } catch (err) {
+        res.status(500).json({
+            error: 'Could not get the house at this time'
+        });
+    }
+})
 
 
 

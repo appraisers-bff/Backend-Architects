@@ -14,12 +14,14 @@ module.exports = {
 }
 
 async function add(house) {
-    const [id] = await db('houses').insert(house);
+    const [id] = await 
+    db('houses').insert(house);
     return findById(id);
   }
 
   function createHouse(house) {
-      return db('houses').insert(house)
+      return db('houses')
+      .insert(house)
   }
 
   function getHouseById(id) {
@@ -38,7 +40,8 @@ async function add(house) {
   }
 
   function findBy(filter) {
-    return db('houses').where(filter);
+    return db('houses')
+    .where(filter);
   }
   
 

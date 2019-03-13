@@ -74,7 +74,7 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-router.put('/users/:id/', auth, async (req, res) => {
+router.put('/users/:id', auth, async (req, res) => {
     try {
         let response = await Users.updateUser(req.params.id, req.body);
         res.status(200).json({ message: 'User info has been successfully updated' });
