@@ -19,7 +19,11 @@ A Backend for Worther App
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
 |  POST  | `/api/register` | `first`,`last`,`username`, `email`, `password`| Used for adding a new user .                                       |
 |  POST  | `/api/login`    |  `username`, `password`| Login with username and password. Provides JWT to user    |
-|  GET   | `/api/users`     |  Successful Login  | Shows a list of users if logged in.          
+|  GET   | `/api/users`     |  Successful Login  | Shows a list of users if logged in    |
+|  PUT   | `/api/users/:id`     |  Successful Login  | Edit a current user      |
+|  GET   | `/api/users/:id`     |  Successful Login  | Delete a current user    |
+
+
 
 ### House Table
 
