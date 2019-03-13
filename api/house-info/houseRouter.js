@@ -14,10 +14,8 @@ const router = express.Router();
 router.post('/house', (req, res) => {
     const house = req.body
     Houses.add(house)
-    .then(id=> {
-        console.log(id)
-        Houses.findById(id)
-        res.status(201).json(id)
+    .then(house=> {
+        res.status(201).json(house)
     })
     .catch(err => {
         res.status(500).json({error: "could not save house at this time"} )
@@ -25,10 +23,9 @@ router.post('/house', (req, res) => {
 })
 
 router.get('/house/:id', (req, res) => {
-    let { id } = req.body
+    let { id } = req.params
     Houses.findById(id)
-      .then(house => {
-        
+      .then(house => {   
         res.status(201).json(house);
       })
       .catch(error => {
@@ -54,7 +51,7 @@ router.get('/house/:id', (req, res) => {
 
 router.put('/house/:id/', auth, async (req, res) => {
     try {
-        let response = await Houses.updateUser(req.params.id, req.body);
+        let response = await Houses.updateHouse(req.params.id, req.body);
         res.status(200).json({ message: 'House info has been successfully updated' });
     } catch (err) {
         res.status(404).json({
