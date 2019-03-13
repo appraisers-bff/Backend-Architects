@@ -28,16 +28,18 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    let { username, password } = req.body;
+    let { id, username, password } = req.body;
   
     Users.findBy({ username })
       .first()
       .then(user => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = Users.generateToken(user); 
+          const id = user.id 
           res.status(200).json({
+            id,
             message: `Welcome ${user.username}!, have a token...`,
-            token,
+            token, 
           });
         } else {
           res.status(401).json({ message: 'Invalid Credentials' });

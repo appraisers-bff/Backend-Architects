@@ -57,6 +57,6 @@ async function add(house) {
   function updateHouse(id, changes) {
     return db('houses')
       .where({ id })
-      .first()
-      .update(changes);
+      .returning('*')
+      .update(changes, '*');
   }
