@@ -1,65 +1,80 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
-    add,
-    find,
-    findById,
-    findBy,
-    remove,
-    updateHouse,
-    createHouse,
-    getHouseById
-}
+  add,
+  find,
+  findById,
+  findBy,
+  remove,
+  updateHouse,
+  createHouse,
+  getHouseById
+};
 
 async function add(house) {
-    const [id] = await 
-    db('houses').insert(house);
-    return findById(id);
-  }
+  const [id] = await db("houses").insert(house);
+  return findById(id);
+}
 
-  function createHouse(house) {
-      return db('houses')
-      .insert(house)
-  }
+function createHouse(house) {
+  return db("houses").insert(house);
+}
 
-  function getHouseById(id) {
-      return db('houses')
-      .where({ 'user_id': id })
-      .select('id','address','city',
-      'state', 'zip', 'bed', 'bath', 'sqft', 'stories',
-      'garage', 'pool')
-  }
+function getHouseById(id) {
+  return db("houses")
+    .where({ user_id: id })
+    .select(
+      "id",
+      "address",
+      "city",
+      "state",
+      "zip",
+      "bed",
+      "bath",
+      "sqft",
+      "stories",
+      "garage",
+      "pool"
+    );
+}
 
+function find() {
+  return db("houses").select(
+    "id",
+    "address",
+    "city",
+    "state",
+    "zip",
+    "bed",
+    "bath",
+    "sqft",
+    "stories",
+    "garage",
+    "pool"
+  );
+}
 
-  function find() {
-    return db('houses').select('id','address','city',
-     'state', 'zip', 'bed', 'bath', 'sqft', 'stories',
-     'garage', 'pool');
-  }
+function findBy(filter) {
+  return db("houses").where(filter);
+}
 
-  function findBy(filter) {
-    return db('houses')
-    .where(filter);
-  }
-  
+function findById(id) {
+  return db("houses")
+    .where({ id })
+    .first();
+}
 
-  function findById(id) {
-    return db('houses')
-      .where({ id })
-      .first();
-  }
+function remove(id) {
+  return db("houses")
+    .where({ id })
+    .del();
+}
 
-  function remove(id) {
-    return db('houses')
-    .where({id})
-    .del()
-  }
-
-  function updateHouse(id, changes) {
-    return db('houses')
-      .where({ id })
-      .returning('*')
-      .update(changes, '*');
-  }
+function updateHouse(id, changes) {
+  return db("houses")
+    .where({ id })
+    .returning("*")
+    .update(changes, "*");
+}
