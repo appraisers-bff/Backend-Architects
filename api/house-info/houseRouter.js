@@ -36,6 +36,34 @@ router.get('/house/:id', (req, res) => {
       });
   });
 
+  router.delete('/house/:id', async (req, res) => {
+    try {
+      const count = await Houses.remove(req.params.id);
+      if (count > 0) {
+        res.status(200).json({ message: 'User has been removed' });
+      } else {
+        res.status(404).json({ message: 'User could not be found' });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: 'Error removing the house',
+      });
+    }
+  });
+
+router.put('/house/:id/', auth, async (req, res) => {
+    try {
+        let response = await Houses.updateUser(req.params.id, req.body);
+        res.status(200).json({ message: 'House info has been successfully updated' });
+    } catch (err) {
+        res.status(404).json({
+            error: `Could not find specified house.`
+        });
+    }
+});
+
+
 router.post('/user/:id/house', restricted, async (req, res) => { 
 
  if (req.body.length > 0) {
