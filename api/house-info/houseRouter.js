@@ -25,10 +25,10 @@ router.post('/house', (req, res) => {
 })
 
 router.get('/house/:id', (req, res) => {
-    let { id } = req.body 
-    
+    let { id } = req.body
+    Houses.findById(id)
       .then(house => {
-        Houses.findById(id)
+        
         res.status(201).json(house);
       })
       .catch(error => {
