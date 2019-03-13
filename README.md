@@ -26,10 +26,8 @@ A Backend for Worther App
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
 |  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house . |
-|  GET   | `api/house/:id`     | No login necessary | house info | Shows home. 
-
-|  PUT   | `api/house/:id`     | No login necessary | house info | Updates home.  
-
+|  GET   | `api/house/:id`     | No login necessary | house info | Shows home. |
+|  PUT   | `api/house/:id`     | No login necessary | house info | Updates home. | 
 |  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |                                  |
 |  GET   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.            
 
