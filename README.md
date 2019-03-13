@@ -30,11 +30,8 @@ A Backend for Worther App
 | 
 |  PUT   | `api/house/:id`     | No login necessary | house info | Updates home.  
 |
-|  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |  
-|  POST  | `api/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .                                   |
-|  PUT | `api/user/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
-|  GET   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.    
-|  DELETE   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Delete house info | Deletes home for logged in user.          
+|  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |                                  |
+|  GET   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.            
 
 ### Example JSON object:
 ```
