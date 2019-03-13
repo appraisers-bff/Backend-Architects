@@ -7,6 +7,7 @@ A Backend for Worther App
 - run `yarn` in order to install all dependencies
 - use the command `yarn server` to run nodemon live server
 - use http://localhost:6000/ to get end points
+- deployed on heroku  https://worther.herokuapp.com
 
 
 ## Endpoints
@@ -24,14 +25,16 @@ A Backend for Worther App
 
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
-|  POST  | `/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .   
-
-|  GET   | `/houses`     | No login necessary | house info | Shows homes.   
-
-|  POST  | `/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .                                   |
-|  PUT | `/user/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
-|  GET   | `/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.    
-|  DELETE   | `/user/:id/house`     | Must be logged in JWT in Authorization Header| Delete house info | Deletes home for logged in user.          
+|  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house . |
+|  GET   | `api/house/:id`     | No login necessary | house info | Shows home. 
+| 
+|  PUT   | `api/house/:id`     | No login necessary | house info | Updates home.  
+|
+|  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |  
+|  POST  | `api/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .                                   |
+|  PUT | `api/user/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
+|  GET   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.    
+|  DELETE   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Delete house info | Deletes home for logged in user.          
 
 ### Example JSON object:
 ```
