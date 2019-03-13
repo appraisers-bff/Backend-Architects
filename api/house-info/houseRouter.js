@@ -7,8 +7,6 @@ const db = require('../../data/dbConfig')
 const Users = require('../users/users-model')
 
 const router = express.Router();
-
-
   
 
 router.post('/house', (req, res) => {
