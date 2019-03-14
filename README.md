@@ -42,7 +42,7 @@ Parameters:
 | password  |string|    yes   |Can be any length     |
 |email  |string|    yes   |Must be a valid email address and unique |
 
-Example of what to use: 
+Example: 
 ```
 {
     first: "Jill",
@@ -56,12 +56,9 @@ Example of what to use:
 
 ### User Login
 
-
 Method used: **[POST]** `/api/login/`
 
-On Success: Returns an object containing a token to be used to authenticate the user, user's id, and first name. Place it in Authorization header.
-
-
+On Success: Returns an object containing a token, user's id, and first name. Place token in the Authorization header.
 
 Parameters:
 
@@ -70,7 +67,7 @@ Parameters:
 |username|string|    yes   |
 |password|string|    yes   |
 
-Example of what to use: 
+Example: 
 ```
 {
     username: "jill1",
@@ -119,6 +116,18 @@ Parameters:
 ```
 
 ### To Test in Postman 
+
+Register
+
+```
+{ 
+"first": "Ryan",
+"last": "Smith",
+"username": "ryan2",
+"email": "ryans@test.com",
+"password": "ryan" }
+
+```
 
 Login
 
