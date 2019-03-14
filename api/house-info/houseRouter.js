@@ -32,7 +32,7 @@ function callEstimate(req, res, next) {
 
     process.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
-        res.status(500).json({ err: 'callEstimate error', message: data.toString() });
+        //res.status(500).json({ err: 'callEstimate error', message: data.toString() });
     });
 
     process.on('close', (code) => {
