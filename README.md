@@ -85,15 +85,13 @@ Example of what to use:
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
 |  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `year`| Used for adding a new house . |
-|  GET   | `api/house/:id`     | No login necessary | house info | Shows home. 
+|  GET   | `api/house/:id`     | Must be logged in | Shows specified home. 
 | 
-|  PUT   | `api/house/:id`     | No login necessary | house info | Updates home.  
+|  PUT   | `api/house/:id`     | Must be logged in | Updates specified home.  
 |
-|  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |  
-|  POST  | `api/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `year`| Used for adding a new house .                                   |
-|  PUT | `api/user/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
-|  GET   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.    
-|  DELETE   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Delete house info | Deletes home for logged in user.          
+|  DELETE   | `api/house/:id`     | Must be logged in| Deletes specified home. |  
+|  GET  | `api/user/:id/house` | Must be logged in| Lists all homes for a user .                                   |
+         
 
 
 Parameters:
@@ -123,6 +121,7 @@ Parameters:
     year: "2002"
 }
 
+```
 
 ### To Test in Postman 
 
