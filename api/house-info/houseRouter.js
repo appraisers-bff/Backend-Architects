@@ -9,7 +9,7 @@ const Users = require('../users/users-model')
 const router = express.Router();
   
 
-router.post('/house',  (req, res) => {
+router.post('/house', restricted,  (req, res) => {
     const house = req.body
     Houses.add(house)
     .then(house=> {
@@ -20,7 +20,7 @@ router.post('/house',  (req, res) => {
     })
 })
 
-router.get('/house/:id', (req, res) => {
+router.get('/house/:id', restricted,  (req, res) => {
     let { id } = req.params
     Houses.findById(id)
       .then(house => {   
@@ -31,7 +31,7 @@ router.get('/house/:id', (req, res) => {
       });
   });
 
-  router.delete('/house/:id', async (req, res) => {
+  router.delete('/house/:id', restricted, async (req, res) => {
     try {
       const count = await Houses.remove(req.params.id);
       if (count > 0) {
@@ -47,7 +47,7 @@ router.get('/house/:id', (req, res) => {
     }
   });
 
-router.put('/house/:id', async (req, res) => {
+router.put('/house/:id', restricted, async (req, res) => {
     try {
         let response = await Houses.updateHouse(req.params.id, req.body);
         res.status(200).json({ message: 'House info has been successfully updated' });
@@ -85,7 +85,7 @@ router.put('/house/:id', async (req, res) => {
 //  }
 //     }) 
 
-router.get('/user/:id/house', async (req, res) => {
+router.get('/user/:id/house', restricted, async (req, res) => {
     try {
         const response = await Houses.getHouseById(req.params.id);
 
