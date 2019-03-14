@@ -6,7 +6,7 @@
 
 import numpy as np
 import pandas as pd
-import _pickle as cPickle
+import pickle as cPickle
 from pyzillow.pyzillow import ZillowWrapper, GetDeepSearchResults
 
 from pandas.io.json import json_normalize
@@ -50,4 +50,4 @@ def main():
 
 #start process
 if __name__ == '__main__':
-
+    main()
