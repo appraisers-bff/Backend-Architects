@@ -9,6 +9,8 @@ exports.up = function(knex, Promise) {
     tbl.integer("bath").notNullable();
     tbl.integer("sqft").notNullable();
     tbl.integer("year").notNullable();
+    tbl.integer("fmv");
+    tbl.integer("zestimate");
     tbl
       .integer("user_id")
       .unsigned()
