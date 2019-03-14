@@ -1,23 +1,43 @@
 require('dotenv').config();
+const axios = require('axios');
 const express = require('express');
-const auth = require('../users/auth')
-const restricted = require('./restricted')
-const Houses = require('./house-model')
-const db = require('../../data/dbConfig')
-const Users = require('../users/users-model')
+const auth = require('../users/auth');
+const restricted = require('./restricted');
+const Houses = require('./house-model');
+const db = require('../../data/dbConfig');
+const Users = require('../users/users-model');
 
 const router = express.Router();
   
-
-router.post('/house', restricted,  (req, res) => {
+router.post('/house', restricted, (req, res) => {
     const house = req.body
-    Houses.add(house)
-    .then(house=> {
-        res.status(201).json(house)
-    })
-    .catch(err => {
-        res.status(500).json({error: "could not save house at this time"} )
-    })
+    //make sure zip, bed, bath, sqft, and year are numbers
+    if(typeof house.zip !== 'number' || typeof house.bed !== 'number' || typeof house.bath !== 'number' || typeof house.sqft !== 'number' || typeof house.year !== 'number') {
+        house.zip = parseInt(house.zip);
+        house.bed = parseInt(house.bed);
+        house.bath = parseInt(house.bath);
+        house.sqft = parseInt(house.sqft);
+        house.year = parseInt(house.year);
+    }
+
+    //api call to heroku/flask file
+    axios.post('https://test-flask-app-api-heroku.herokuapp.com/api', house)
+        .then(response => {
+            house.fmv = response.data.results[0];
+            house.zestimate = response.data.results[1];
+            //add house to the database
+            Houses.add(house)
+                .then(house => {
+                    //send the house to the client
+                    res.status(201).json(house);
+                })
+                .catch(err => {
+                    res.status(500).json({error: "could not save house at this time"} )
+                })
+        })
+        .catch(err => {
+            res.status(500).json({error: "could not properly reach heroku/python script"} )
+        })
 })
 
 router.get('/house/:id', restricted,  (req, res) => {
