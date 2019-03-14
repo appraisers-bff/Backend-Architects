@@ -1,5 +1,11 @@
 require('dotenv').config();
 const express = require('express');
+
+//python 
+const spawn = require('child_process').spawn;
+//python model path, the .env path is for heroku
+const path = process.env.PYTHON_PATH || './api/house-info/modeltest.py';
+
 const auth = require('../users/auth')
 const restricted = require('./restricted')
 const Houses = require('./house-model')
@@ -7,7 +13,32 @@ const db = require('../../data/dbConfig')
 const Users = require('../users/users-model')
 
 const router = express.Router();
-  
+
+//python middleware
+function callEstimate(req, res, next) {
+    const house = req.body; 
+
+    const process = spawn('python', [
+        path,
+        house,
+        'estimate'
+    ]);
+
+    process.stdout.on('data', (data) => {
+        const dataString = data.toString();
+        const dataObj = JSON.parse(dataString);
+        res.status(200).json(dataObj);
+    });
+
+    process.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+        res.status(500).json({ message: data.toString() });
+    });
+    
+    process.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+    });
+}
 
 router.post('/house',  (req, res) => {
     const house = req.body
