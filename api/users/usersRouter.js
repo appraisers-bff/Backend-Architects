@@ -58,7 +58,7 @@ router.post('/login', (req, res) => {
       .catch(err => res.send(err));
   });
 
-router.delete('users/:id', async (req, res) => {
+router.delete('/users/:id', async (req, res) => {
     try {
       const count = await Users.remove(req.params.id);
       if (count > 0) {
