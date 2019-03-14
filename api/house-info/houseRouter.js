@@ -27,20 +27,21 @@ function callEstimate(req, res, next) {
     process.stdout.on('data', (data) => {
         const dataString = data.toString();
         const dataObj = JSON.parse(dataString);
-        res.status(200).json(dataObj);
+        next(dataObj);
     });
 
     process.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
-        res.status(500).json({ message: data.toString() });
+        res.status(500).json({ err: 'callEstimate error', message: data.toString() });
     });
-    
+
     process.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
     });
 }
 
-router.post('/house',  (req, res) => {
+router.post('/house', callEstimate, (req, res) => {
+    console.log('trying to show dataObj from callEstimate', dataObj);
     const house = req.body
     Houses.add(house)
     .then(house=> {
