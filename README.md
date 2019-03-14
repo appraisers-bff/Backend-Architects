@@ -38,7 +38,6 @@ Parameters:
 |-----------|------|----------|--------------------------------------------------|
 |   first    |string|    no  | First name of user                |
 |   last    |string|    no   | Last name of use                |
-
 | username  |string|    yes   |Must be unique.                                   |
 | password  |string|    yes   |Can be any length     |
 |email  |string|    yes   |Must be a valid email address and unique |
@@ -83,12 +82,10 @@ Example of what to use:
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
 |  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `year`| Used for adding a new house . |
-|  GET   | `api/house/:id`     | Must be logged in | Shows specified home. 
-| 
-|  PUT   | `api/house/:id`     | Must be logged in | Updates specified home.  
-|
+|  GET   | `api/house/:id`     | Must be logged in | Shows specified home. | 
+|  PUT   | `api/house/:id`     | Must be logged in | Updates specified home.  |
 |  DELETE   | `api/house/:id`     | Must be logged in| Deletes specified home. |  
-|  GET  | `api/user/:id/house` | Must be logged in| Lists all homes for a user .                                   |
+|  GET  | `api/user/:id/house` | Must be logged in| Lists all homes for a user .  |
          
 
 
