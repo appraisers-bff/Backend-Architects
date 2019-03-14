@@ -1,22 +1,20 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-
+const secret = process.env.JWT_SECRET || 'Super secret is here'
 const restricted = (req, res, next) => {
     const token = req.headers.authorization;
 
     if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
-            if (decodedToken.id.toString() === req.params.id.toString()) {
+        jwt.verify(token, secret, (err, decodedToken) => {
+            if (err) {
+                res.status(401).json({ message: 'token can not be changed' });
+            } else {
                 req.decodedToken = decodedToken;
                 next();
-            } else {
-                res.status(403).json({
-                    error: `Not authorized to edit`
-                }); 
             }
         })
     } else {
-        res.status(401).json({ message: `Invalid token!` });   
+        res.status(401).json({ message: 'Invalid token!' });   
     }
 }
 

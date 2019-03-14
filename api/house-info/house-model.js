@@ -50,9 +50,7 @@ function find() {
     "bed",
     "bath",
     "sqft",
-    "stories",
-    "garage",
-    "pool"
+    "year",
   );
 }
 
