@@ -144,11 +144,31 @@ House Info
     "address": "3332 W Main St",
     "city": "Los Angeles",
     "state": "CA",
-    "zip": "90210",
-    "bed": "5",
-    "bath": "4",
-    "sqft": "5400",
-    "year": "2002"
+    "zip": 90210,
+    "bed": 5,
+    "bath": 4,
+    "sqft": 5400,
+    "year": 2002
 }
 
 ```
+Object that is returned from api/house post request
+
+```
+{
+    "id": 9,
+    "address": "4059 Brighton Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": 90062,
+    "bed": 4,
+    "bath": 2,
+    "sqft": 2370,
+    "year": 1908,
+    "fmv": 549223,
+    "zestimate": 552147,
+    "user_id": 1
+}
+
+```
+
