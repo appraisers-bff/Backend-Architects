@@ -78,8 +78,6 @@ Example of what to use:
     password: "testpassword1"
 }
 ```
----
-
 ### House Table
 
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
