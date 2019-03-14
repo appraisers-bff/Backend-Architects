@@ -82,6 +82,7 @@ router.delete("/users/:id", async (req, res) => {
     });
   }
 });
+
 // Update user info PUT
 router.put("/users/:id", auth, async (req, res) => {
   try {

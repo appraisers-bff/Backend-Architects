@@ -8,6 +8,7 @@ const Users = require('../users/users-model')
 
 const router = express.Router();
   
+// Add new House POST
 
 router.post('/house', restricted,  (req, res) => {
     const house = req.body
@@ -19,6 +20,7 @@ router.post('/house', restricted,  (req, res) => {
         res.status(500).json({error: "could not save house at this time"} )
     })
 })
+// GET house by id
 
 router.get('/house/:id', restricted,  (req, res) => {
     let { id } = req.params
@@ -30,6 +32,8 @@ router.get('/house/:id', restricted,  (req, res) => {
         res.status(500).json(error);
       });
   });
+
+  // DELETE house by id
 
   router.delete('/house/:id', restricted, async (req, res) => {
     try {
@@ -46,6 +50,7 @@ router.get('/house/:id', restricted,  (req, res) => {
       });
     }
   });
+// Update house with id PUT
 
 router.put('/house/:id', restricted, async (req, res) => {
     try {
@@ -85,7 +90,9 @@ router.put('/house/:id', restricted, async (req, res) => {
 //  }
 //     }) 
 
-router.get('/user/:id/house', restricted, async (req, res) => {
+// GET house by user id
+
+router.get('/user/:id/house', async (req, res) => {
     try {
         const response = await Houses.getHouseById(req.params.id);
 
