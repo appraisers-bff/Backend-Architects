@@ -19,22 +19,96 @@ A Backend for Worther App
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
 |  POST  | `/api/register` | `first`,`last`,`username`, `email`, `password`| Used for adding a new user .                                       |
 |  POST  | `/api/login`    |  `username`, `password`| Login with username and password. Provides JWT to user    |
-|  GET   | `/api/users`     |  Successful Login  | Shows a list of users if logged in.          
+|  GET   | `/api/users`     |  Successful Login  | Shows a list of users if logged in.  |
+|  PUT   | `/api/users/:id/`|            Successful Login, Data            | Used to edit the logged in user's credentials. **Only works on current user!**|
+| DELETE | `api/users/:id/` |              Successful Login                | Used to delete the logged in user. **Only works on current user!**            |        
+
+### User Registration
+
+
+Method used: **[POST]** `/api/register/`
+
+On Success: Returns the Id of the new user.
+
+
+
+Parameters:
+
+|   Name    | Type | Required |                      Notes                       |
+|-----------|------|----------|--------------------------------------------------|
+|   first    |string|    no  | First name of user                |
+|   last    |string|    no   | Last name of use                |
+
+| username  |string|    yes   |Must be unique.                                   |
+| password  |string|    yes   |Can be any length     |
+|email  |string|    yes   |Must be a valid email address and unique |
+
+Example of what to use: 
+```
+{
+    first: "Jill",
+    last: "Jones",
+    username: "jill1",
+    email: "jill@gmail.com",
+    password: "testpassword1",
+}
+```
+---
+
+### User Login
+
+
+Method used: **[POST]** `/api/login/`
+
+On Success: Returns an object containing a token to be used to authenticate the user, user's id, and first name. Place it in Authorization header.
+
+
+
+Parameters:
+
+|  Name  | Type | Required |
+|--------|------|----------|
+|username|string|    yes   |
+|password|string|    yes   |
+
+Example of what to use: 
+```
+{
+    username: "jill1",
+    password: "testpassword1"
+}
+```
+---
 
 ### House Table
 
 | Method |     Endpoint     |                  Requires                    |                                        Description                            |
 |--------|------------------|----------------------------------------------|-------------------------------------------------------------------------------|
-|  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house . |
+|  POST  | `api/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `year`| Used for adding a new house . |
 |  GET   | `api/house/:id`     | No login necessary | house info | Shows home. 
 | 
 |  PUT   | `api/house/:id`     | No login necessary | house info | Updates home.  
 |
 |  DELETE   | `api/house/:id`     | No login necessary | house info | Delete homes. |  
-|  POST  | `api/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `stories`, `garage`, `pool`| Used for adding a new house .                                   |
+|  POST  | `api/user/:id/house` | `address`, `city`, `state`, `zip`, `bed`, `bath`, `sqft`, `year`| Used for adding a new house .                                   |
 |  PUT | `api/user/:id/house`    |  Must be logged in JWT in Authorization Header| Update house info  |
 |  GET   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Update house info | Shows homes for logged in user.    
 |  DELETE   | `api/user/:id/house`     | Must be logged in JWT in Authorization Header| Delete house info | Deletes home for logged in user.          
+
+
+Parameters:
+
+|      Name     |   Type   | Required |                   Notes                     |
+|---------------|----------|----------|---------------------------------------------|
+| Address|string|    yes   | example: 404 W Main St           |
+|     city    |  string  |    yes  | Name of city            |
+|    state  |  string  |   yes   | example: CA                              |
+|    zip  |  integer |   yes    | example: 90210|
+|    bed  |  integer |   yes    | number of bathrooms|
+|    bath  |  integer |   yes    | number of bedrooms|
+|    sqft  |  integer |   yes    | Square Footage of home|
+|    year  |  integer |   yes    | Year home was built |
+
 
 ### Example JSON object:
 ```
@@ -46,21 +120,9 @@ A Backend for Worther App
     bed: "4",
     bath: "3",
     sqft: "2224",
-    stories: "2",
-    garage: "3",
-    pool: "true"
+    year: "2002"
 }
-```
-    tbl.string("address").notNullable();
-    tbl.string("city", 128).notNullable();
-    tbl.string("state", 2).notNullable();
-    tbl.integer("zip").notNullable();
-    tbl.integer("bed").notNullable();
-    tbl.integer("bath").notNullable();
-    tbl.integer("sqft").notNullable();
-    tbl.integer("stories").notNullable();
-    tbl.integer("garage").notNullable();
-    tbl.boolean("pool").notNullable();
+
 
 ### To Test in Postman 
 
@@ -83,8 +145,7 @@ House Info
     "bed": "5",
     "bath": "4",
     "sqft": "5400",
-    "stories": "2",
-    "garage": "4",
-    "pool": "true" }
+    "year": "2002",
+}
 
 ```

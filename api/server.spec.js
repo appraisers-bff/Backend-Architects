@@ -42,9 +42,7 @@ describe("Post Route House", () => {
       bed: "4",
       bath: "3",
       sqft: "2224",
-      stories: "2",
-      garage: "3",
-      pool: "true"
+      year: "2002",
     };
     const response = await request(server)
       .post("/api/house")
