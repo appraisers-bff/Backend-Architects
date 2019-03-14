@@ -36,6 +36,7 @@ function callEstimate(req, res, next) {
     });
 
     process.on('close', (code) => {
+        //any code other than 0 is considered an error
         console.log(`child process exited with code ${code}`);
     });
 }
