@@ -25,33 +25,11 @@ function createHouse(house) {
 function getHouseById(id) {
   return db("houses")
     .where({ user_id: id })
-    .select(
-      "id",
-      "address",
-      "city",
-      "state",
-      "zip",
-      "bed",
-      "bath",
-      "sqft",
-      "stories",
-      "garage",
-      "pool"
-    );
+    .select();
 }
 
 function find() {
-  return db("houses").select(
-    "id",
-    "address",
-    "city",
-    "state",
-    "zip",
-    "bed",
-    "bath",
-    "sqft",
-    "year",
-  );
+  return db("houses").select();
 }
 
 function findBy(filter) {
