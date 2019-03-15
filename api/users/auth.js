@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 
 const secret = process.env.JWT_SECRET || 'Super secret is here'
 
-
 const auth = (req, res, next) => {
     const token = req.headers.authorization;
 
