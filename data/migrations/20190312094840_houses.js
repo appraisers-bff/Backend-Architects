@@ -11,8 +11,8 @@ exports.up = function(knex, Promise) {
     tbl.integer("year").notNullable();
     tbl.integer("fmv");
     tbl.integer("zestimate");
-    tbl
-      .integer("user_id")
+
+    tbl.integer("user_id")
       .unsigned()
       .references("id")
       .inTable('users')
