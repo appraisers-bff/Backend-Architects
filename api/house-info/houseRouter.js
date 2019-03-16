@@ -56,16 +56,17 @@ router.get('/house/:id', (req, res) => {
       const count = await Houses.remove(req.params.id);
       if (count > 0) {
         res.status(200).json({ message: 'House has been removed' });
-        let { id } = req.params
-        Houses.findById(id)
-          .then(house => {   
-            res.status(201).json(house);
-          .catch(error => {
-            res.status(500).json(error);
-      });
       } else {
         res.status(404).json({ message: 'House could not be found' });
       }
+      let { id } = req.params
+      Houses.findById(id)
+        .then(house => {   
+          res.status(201).json(house);
+        })
+        .catch(error => {
+          res.status(500).json(error);
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({
